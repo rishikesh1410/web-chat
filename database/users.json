@@ -1,0 +1,14 @@
+{
+    "users" : [
+        {
+            "name" : "Rishikesh Sahu",
+            "email" : "rishikeshsahu14101998@gmail.com",
+            "password" : "Rishi@14101998"
+        },
+        {
+            "name" : "Pranay Kumar Sinha",
+            "email" : "pks34552589@gmail.com",
+            "password" : "pvandu"
+        }
+    ]
+}
