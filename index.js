@@ -47,7 +47,8 @@ app.get('/connect', (req,res)=>{
     res.send('Azure blob is connected');
 })
 app.get('/logout', (req,res)=>{
-    res.redirect('/');
+    req.logout();
+    res.redirect('/home');
 })
 
 app.listen(port, ()=>{

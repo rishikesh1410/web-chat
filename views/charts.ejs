@@ -15,11 +15,14 @@
             <div class="col-md-2">
                 <div class="list-group">
                     <% for(var column in columns){ %>
-                    <a id="<%= column %>" href="#" class="list-group-item list-group-item-action"><%= column %><span style="float:right;"><input onchange="handler(this)" id="<%= column %>" type="checkbox"/></span></a>
+                    <a id="a_<%= column %>" href="#" class="list-group-item list-group-item-action">
+                        <label for="<%= column %>"><%= column %></label>
+                        <span style="float:right;"><input onchange="handler(this)" id="<%= column %>" type="checkbox"/></span>
+                    </a>
                     <% } %>
                 </div>
                 <div class="list-group">
-                    <button onclick="plot('bar', '<%= tablename %>')" style="color:black;" type="button" class="btn btn-info list-group-item">Bar Chbarart</button>
+                    <button onclick="plot('bar', '<%= tablename %>')" style="color:black;" type="button" class="btn btn-info list-group-item">Bar Chart</button>
                     <button onclick="plot('line', '<%= tablename %>')" style="color: black;" type="button" class="btn btn-info list-group-item">Line Chart</button>
                     <button onclick="plot('pie', '<%= tablename %>')" style="color: black;" type="button" class="btn btn-info list-group-item">Pie Chart</button>
                 </div>
@@ -38,6 +41,7 @@
 <script>
 
 let columns = [];
+var myChart;
 function handler(ele) {
     if(ele.checked==true) {
         columns.push(ele.id);
@@ -73,19 +77,19 @@ function plot(met, tablename) {
     }
 }
 function chartHelper(labels, data, met) {
-    var ctx = document.getElementById('chart').getContext('2d');
-    if(met == "bar") barChart(ctx, labels, data);
-    else if(met == "line") lineChart(ctx, labels, data);
-    else if(met == "pie") pieChart(ctx, labels, data);
+    if(met == "bar") barChart(labels, data);
+    else if(met == "line") lineChart(labels, data);
+    else if(met == "pie") pieChart(labels, data);
     
 }
 
 // PLOTS
-function barChart(ctx,labels,data) {
-    if (myChart) {
-        myChart.destroy();
+function barChart(labels,data) {
+    var ctx = document.getElementById('chart').getContext('2d');
+    if (window.myChart!=undefined) {
+        window.myChart.destroy();
     }
-    var myChart = new Chart(ctx, {
+    window.myChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: labels,//aray
@@ -111,11 +115,12 @@ function barChart(ctx,labels,data) {
     });
 }
 
-function lineChart(ctx,labels,data) {
-    if (myChart) {
-        myChart.destroy();
+function lineChart(labels,data) {
+    var ctx = document.getElementById('chart').getContext('2d');
+    if (window.myChart!=undefined) {
+        window.myChart.destroy();
     }
-    var myChart = new Chart(ctx, {
+    window.myChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: labels,//aray
@@ -141,11 +146,12 @@ function lineChart(ctx,labels,data) {
     });
 }
 
-function pieChart(ctx,labels,data) {
-    if (myChart) {
-        myChart.destroy();
+function pieChart(labels,data) {
+    var ctx = document.getElementById('chart').getContext('2d');
+    if (window.myChart!=undefined) {
+        window.myChart.destroy();
     }
-    var myChart = new Chart(ctx, {
+    window.myChart = new Chart(ctx, {
         type: 'pie',
         data: {
             labels: labels,//aray
