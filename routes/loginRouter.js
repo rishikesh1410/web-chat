@@ -16,7 +16,6 @@ loginRouter.route('/')
 })
 .post(urlencodedParser, passport.authenticate('local', { failureRedirect: '/login' }),
 function(req, res) {
-    console.log(req.body);
     res.redirect('/main');
 });
 module.exports = loginRouter;

@@ -1,5 +1,4 @@
-{
-    "tables" : [
+[
         {
             "name" : "iris",
             "createdby" : "someone"
@@ -8,5 +7,4 @@
             "name" : "bank",
             "createdby" : "someone"
         }
-    ]
-}
+]

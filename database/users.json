@@ -1,14 +1,1 @@
-{
-    "users" : [
-        {
-            "name" : "Rishikesh Sahu",
-            "email" : "rishikeshsahu14101998@gmail.com",
-            "password" : "Rishi@14101998"
-        },
-        {
-            "name" : "Pranay Kumar Sinha",
-            "email" : "pks34552589@gmail.com",
-            "password" : "pvandu"
-        }
-    ]
-}
+[{"name":"Rishikesh Sahu","email":"rishikeshsahu14101998@gmail.com","password":"Rishi@14101998"},{"name":"Pranay Kumar Sinha","email":"pks34552589@gmail.com","password":"pvandu"},{"name":"Rishikesh Sahoo","email":"rishikeshsahu14@gmail.com","password":"Rishi@14101998"},{"name":"Manoj Patra","email":"patraism@gmail.com","password":"qwerty"},{"name":"Barkha Agrawal","email":"Barkha.Agrawal@unilever.com","password":"qwerty123"}]

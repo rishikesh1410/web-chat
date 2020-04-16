@@ -5,10 +5,16 @@ const functions = require('../blobconnection/functions');
  
 async function Helper() {
   const containerClient =  await functions.getcontainer(connect.blobServiceClient, "demo");
-  const blockBlobClient =  await functions.getblob(containerClient, "tables.json");
+  const blobs =  await functions.getblobnames(connect.aborter, containerClient, "demo");
+  tables = [];
+  for await (const blob of blobs) {
+    name = blob.name.replace(".json", "");
+    tables.push(name);
+  }
+  const blockBlobClient =  await functions.getblob(containerClient, "iris.json");
 
-  const data = await functions.downloadcontent(blockBlobClient, connect.aborter);
-  return data;
+  const content = await functions.downloadcontent(blockBlobClient, connect.aborter);
+  return {tables,content};
 }
 
 const tablesRouter = express.Router();
@@ -21,8 +27,9 @@ tablesRouter.route('/')
 })
 .get((req,res)=>{
     Helper().then((data) => {
-        tables = JSON.parse(data);
-        res.render('tables', {'tables' : tables.tables});
+      console.log("----->");
+      data.content = JSON.parse(data.content);
+      res.render('tables', {'tables' : data.tables, 'content' : data.content, 'table' : 'iris'});
     }).catch((e) => console.log(e));
 })
 

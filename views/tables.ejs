@@ -10,16 +10,37 @@
 </head>
 <body>
     <%- include('partials/mainnav'); -%>
-    <div class="container-fluid" style="height:350px;">
+    <div class="container-fluid">
         <div class="row mt-5">
             <div class="col-md-2">
                 <div class="list-group">
                     <% for(var i=0;i<tables.length;i++){ %>
-                    <a id="<%= tables[i].name %>" href="/charts/<%= tables[i].name %>" class="list-group-item list-group-item-action"><%= tables[i].name %></a>
+                    <a id="<%= tables[i] %>" href="/api/<%= tables[i] %>" class="list-group-item list-group-item-action"><%= tables[i] %></a>
                     <% } %>
+                    <a class="btn btn-success mt-3" href="/charts/<%= table %>" role="button">Next</a>
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9" style="height:400px;overflow-y:scroll;">
+                <table class="table" style="height:400px;overflow-y:scroll;">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">#</th>
+                        <% for(var column in content[0]){ %>
+                        <th scope="col"><%= column %></th>
+                        <% } %>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0;i<content.length;i++){ %>
+                            <tr>
+                                <th scope="row"><%= i %></th>
+                                <% for(var x in content[i]) { %>
+                                    <th scope="row"><%= content[i][x] %></th>
+                                <% } %>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

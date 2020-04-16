@@ -20,9 +20,9 @@ passport.deserializeUser((id, done) => {
   console.log('Deserialization User');
   deserializeUserHelper().then((data) => {
     data = JSON.parse(data);
-    for(var x in data.users){
-      if(data.users[x].email == id) {
-        done(null, data.users[x]);
+    for(var x in data){
+      if(data[x].email == id) {
+        done(null, data[x]);
       }
     }
   }).catch((e) => console.log(e));
@@ -33,9 +33,11 @@ passport.use(new LocalStrategy(
   function(username, password, done) {
     deserializeUserHelper().then((data) => {
       data = JSON.parse(data);
-      for(var x in data.users){
-        if(data.users[x].email == username && data.users[x].password == password) {
-          done(null, data.users[x]);
+      //console.log(data);
+      for(var x in data){
+        
+        if(data[x].email == username && data[x].password == password) {
+          done(null, data[x]);
           return;
         }
       }

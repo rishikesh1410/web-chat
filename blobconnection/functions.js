@@ -57,12 +57,23 @@ async function showBlobNames(aborter, containerClient, containerName) {
     }
 }
 
+// For Getting All the blobs inside a Container
+async function getBlobNames(aborter, containerClient, containerName) {
+    console.log(`Blobs in "${containerName}" container:`);
+    let iter = await containerClient.listBlobsFlat(aborter);
+    return iter;
+}
+
 // [Node.js only] A helper method used to read a Node.js readable stream into string
 async function streamToString(readableStream) {
     return new Promise((resolve, reject) => {
       const chunks = [];
       readableStream.on("data", (data) => {
         chunks.push(data.toString());
+        // if(chunks.length > 1) {
+        //     resolve(chunks.join(""));
+        //     return;
+        // }
       });
       readableStream.on("end", () => {
         resolve(chunks.join(""));
@@ -134,5 +145,6 @@ module.exports = {
     deleteblob : deleteBlob,
     deletecontainer : deleteContainer,
     getblob : getBlob,
-    getcontainer : getContainer
+    getcontainer : getContainer,
+    getblobnames : getBlobNames
 }
